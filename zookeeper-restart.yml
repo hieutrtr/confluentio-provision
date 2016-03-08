@@ -1,0 +1,9 @@
+- name : Start Confluent Zookeeper
+  hosts: zookeeper
+  sudo: yes
+  gather_facts: yes
+  vars:
+    action: 'update'
+  remote_user: ubuntu
+  roles:
+    - zookeeper

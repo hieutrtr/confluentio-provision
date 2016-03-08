@@ -1,0 +1,45 @@
+{% for item in groups['kafka-server'] %}
+{% if hostvars[item].inventory_hostname == inventory_hostname %}
+broker.id={{ loop.index0 }}
+{% endif %}
+{% endfor %}
+
+listeners=PLAINTEXT://:9092
+
+host.name={{ ansible_default_ipv4.address }}
+
+advertised.host.name={{ inventory_hostname }}
+
+#advertised.port=<port accessible by clients>
+
+num.network.threads=3
+
+num.io.threads=8
+
+socket.send.buffer.bytes=102400
+
+socket.receive.buffer.bytes=102400
+
+socket.request.max.bytes=104857600
+
+log.dirs=/var/log/kafka
+
+num.partitions=1
+
+num.recovery.threads.per.data.dir=1
+
+log.retention.hours=168
+
+#log.retention.bytes=1073741824
+
+log.segment.bytes=1073741824
+
+log.retention.check.interval.ms=300000
+
+zookeeper.connect=zoo1:2181,zoo2:2181,zoo3:2181
+
+zookeeper.connection.timeout.ms=6000
+
+confluent.support.metrics.enable=true
+
+confluent.support.customer.id=anonymous

@@ -1,0 +1,6 @@
+# hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 {{ ansible_nodename }}
+
+{% for item in groups['zookeeper'] %}
+{{ hostvars[item].ansible_default_ipv4.address }}   zoo{{ loop.index }}
+{% endfor %}

@@ -1,0 +1,17 @@
+- name : Gather facts zookeeper
+  hosts: zookeeper
+  sudo: yes
+  gather_facts: yes
+  remote_user: ubuntu
+  tasks:
+    set_up:
+
+- name : Start Confluent Kafka Server
+  hosts: kafka-server
+  sudo: yes
+  gather_facts: yes
+  vars:
+    action: 'update'
+  remote_user: ubuntu
+  roles:
+    - kafka-server

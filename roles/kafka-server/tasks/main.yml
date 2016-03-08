@@ -1,0 +1,11 @@
+- name: config hosts file
+  template: src=hosts.j2 dest=/etc/hosts
+
+- name: config kafka server cluster
+  template: src=server.j2 dest=/etc/kafka/server.properties
+
+- name: copy service script
+  copy: src=../../../services/kafka-server dest=/etc/init.d/kafka-server mode=0754
+
+- name: run kafka
+  service: name=kafka-server state=restarted

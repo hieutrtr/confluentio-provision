@@ -1,0 +1,2 @@
+- include: install.deb.yml
+  when: ansible_pkg_mgr == 'apt' and action == 'install'
