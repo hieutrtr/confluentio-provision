@@ -20,9 +20,9 @@ You can add more server like public_ip_4 public_ip_5
 
 > ansible_pkg_mgr='apt'
 
-Config ssh key or pem key for ansible_ssh_private_key_file
+ansible_ssh_private_key_file can be used for ssh key or pem key for
 
-* ansible_pkg_mgr var can be use for apt or yum. For yum need to be add install.yum.yml in common tasks.
+ansible_pkg_mgr var can be used for apt or yum. For yum need to be add install.yum.yml in common tasks.
 
 ## Provisioning by ansible-playbook
 There're playbooks of zookeeper and kafka
