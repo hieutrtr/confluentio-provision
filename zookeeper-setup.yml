@@ -1,6 +1,6 @@
 - name : Start Confluent Zookeeper
   hosts: zookeeper
-  sudo: yes
+  become: yes
   gather_facts: yes
   vars:
     action: 'install'

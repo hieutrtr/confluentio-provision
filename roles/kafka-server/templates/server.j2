@@ -36,7 +36,8 @@ log.segment.bytes=1073741824
 
 log.retention.check.interval.ms=300000
 
-zookeeper.connect=zoo1:2181,zoo2:2181,zoo3:2181
+zookeeper.connect={% for item in groups['kafka-server'] %}zoo{{ loop.index }}:2181{% if not loop.last %},{% endif %}{% endfor %}
+
 
 zookeeper.connection.timeout.ms=6000
 
