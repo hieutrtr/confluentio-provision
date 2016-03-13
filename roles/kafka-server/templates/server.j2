@@ -8,7 +8,9 @@ listeners=PLAINTEXT://:9092
 
 host.name={{ ansible_default_ipv4.address }}
 
-advertised.host.name={{ inventory_hostname }}
+#advertised.host.name={{ inventory_hostname }}
+
+advertised.host.name={{ ansible_default_ipv4.address }}
 
 #advertised.port=<port accessible by clients>
 
@@ -22,15 +24,19 @@ socket.receive.buffer.bytes=102400
 
 socket.request.max.bytes=104857600
 
-log.dirs=/var/log/kafka
+log.dirs=/var/lib/kafka
 
 num.partitions=1
 
 num.recovery.threads.per.data.dir=1
 
-log.retention.hours=168
+{% if retention_type != "hour" %}#{% endif %}log.retention.hours={{retention_value}}
 
-#log.retention.bytes=1073741824
+{% if retention_type != "minute" %}#{% endif %}log.retention.minutes={{retention_value}}
+
+{% if retention_type != "millisecond" %}#{% endif %}log.retention.ms={{retention_value}}
+
+#log.retention.bytes=2000
 
 log.segment.bytes=1073741824
 
@@ -39,7 +45,7 @@ log.retention.check.interval.ms=300000
 zookeeper.connect={% for item in groups['kafka-server'] %}zoo{{ loop.index }}:2181{% if not loop.last %},{% endif %}{% endfor %}
 
 
-zookeeper.connection.timeout.ms=6000
+zookeeper.connection.timeout.ms=10000
 
 confluent.support.metrics.enable=true
 

@@ -24,6 +24,12 @@ ansible_ssh_private_key_file can be used for ssh key or pem key for
 
 ansible_pkg_mgr var can be used for apt or yum. For yum need to be add install.yum.yml in common tasks.
 
+### Retention log
+
+Config : for log retention on every broker
+retention_type=millisecond/minute/hour
+retention_value=5000
+
 ## Provisioning by ansible-playbook
 There're playbooks of zookeeper and kafka
 
