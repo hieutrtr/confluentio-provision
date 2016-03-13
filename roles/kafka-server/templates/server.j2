@@ -8,9 +8,9 @@ listeners=PLAINTEXT://:9092
 
 host.name={{ ansible_default_ipv4.address }}
 
-#advertised.host.name={{ inventory_hostname }}
+{% if advertise != "public" %}#{% endif %}advertised.host.name={{ inventory_hostname }}
 
-advertised.host.name={{ ansible_default_ipv4.address }}
+{% if advertise != "private" %}#{% endif %}advertised.host.name={{ ansible_default_ipv4.address }}
 
 #advertised.port=<port accessible by clients>
 
@@ -50,3 +50,5 @@ zookeeper.connection.timeout.ms=10000
 confluent.support.metrics.enable=true
 
 confluent.support.customer.id=anonymous
+
+delete.topic.enable=true
