@@ -1,0 +1,6 @@
+version=0
+{% for item in groups['kafka-server'] %}
+{% if hostvars[item].inventory_hostname == inventory_hostname %}
+broker.id={{ loop.index0 }}
+{% endif %}
+{% endfor %}

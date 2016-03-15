@@ -3,6 +3,9 @@
 
 - name: config kafka server cluster
   template: src=server.j2 dest=/etc/kafka/server.properties
+  
+- name: config kafka metadata
+  template: src=meta.j2 dest=/var/lib/kafka/meta.properties
 
 - name: copy service script
   copy: src=../../../services/kafka-server dest=/etc/init.d/kafka-server mode=0754
