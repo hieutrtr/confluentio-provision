@@ -3,12 +3,15 @@
 
 - name: config kafka server cluster
   template: src=server.j2 dest=/etc/kafka/server.properties
-  
-- name: config kafka metadata
-  template: src=meta.j2 dest=/var/lib/kafka/meta.properties
 
 - name: copy service script
   copy: src=../../../services/kafka-server dest=/etc/init.d/kafka-server mode=0754
+
+- name: create log dirs
+  file: path=/var/lib/zookeeper state=directory
+
+- name: config kafka metadata
+  template: src=meta.j2 dest=/var/lib/kafka/meta.properties
 
 - name: run kafka
   service: name=kafka-server state=restarted
