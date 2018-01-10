@@ -8,7 +8,7 @@
   copy: src=../../../services/kafka-server dest=/etc/init.d/kafka-server mode=0754
 
 - name: create log dirs
-  file: path=/var/lib/zookeeper state=directory
+  file: path=/var/lib/kafka state=directory
 
 - name: config kafka metadata
   template: src=meta.j2 dest=/var/lib/kafka/meta.properties
