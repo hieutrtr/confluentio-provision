@@ -28,6 +28,8 @@ log.dirs=/var/lib/kafka
 
 num.partitions=1
 
+default.replication.factor=2
+
 num.recovery.threads.per.data.dir=1
 
 {% if retention_type != "hour" %}#{% endif %}log.retention.hours={{retention_value}}
