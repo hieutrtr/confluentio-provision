@@ -1,0 +1,13 @@
+[Unit]
+Description=Zookeeper Service
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/zookeeper-server-start /etc/kafka/zookeeper.properties
+
+[Install]
+WantedBy=multi-user.target

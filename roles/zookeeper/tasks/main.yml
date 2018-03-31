@@ -5,7 +5,7 @@
   template: src=zoo.j2 dest=/etc/kafka/zookeeper.properties
 
 - name: copy service script
-  copy: src=../../../services/zookeeper-server dest=/etc/init.d/zookeeper-server mode=0754
+  copy: src=../../../services/zookeeper-server.service dest=/lib/systemd/system/zookeeper-server.service mode=0754
 
 - name: create log dirs
   file: path=/var/lib/zookeeper state=directory
