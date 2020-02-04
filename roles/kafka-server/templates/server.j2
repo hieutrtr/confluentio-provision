@@ -26,9 +26,9 @@ socket.request.max.bytes=104857600
 
 log.dirs=/var/lib/kafka
 
-num.partitions=1
+num.partitions=10
 
-default.replication.factor=2
+default.replication.factor=3
 
 num.recovery.threads.per.data.dir=1
 
@@ -54,3 +54,6 @@ confluent.support.metrics.enable=true
 confluent.support.customer.id=anonymous
 
 delete.topic.enable=true
+auto.create.topics.enable=true
+inter.broker.protocol.version=2.4
+log.message.format.version=2.4

@@ -1,23 +1,25 @@
 [default]
-localhost ansible_python_interpreter=/usr/bin/python
+localhost ansible_python_interpreter=/usr/bin/python2.7
 
 [zookeeper]
-<public_ip_1>
-<public_ip_2>
-<public_ip_3>
+ip1
+ip2
+ip3
 
 [zookeeper:vars]
-ansible_ssh_private_key_file=~/.ssh/<pem_key>
+ansible_ssh_private_key_file=~/.ssh/<key>.pem
 ansible_pkg_mgr='apt'
+confluent_version=5.4
 
 [kafka-server]
-<public_ip_1>
-<public_ip_2>
-<public_ip_3>
+ip1
+ip2
+ip3
 
 [kafka-server:vars]
-ansible_ssh_private_key_file=~/.ssh/<pem_key>
+ansible_ssh_private_key_file=~/.ssh/<key>.pem
 ansible_pkg_mgr='apt'
-retention_type=millisecond/minute/hour
-retention_value=5000
-advertise=private
+retention_type=hour
+retention_value=17520
+advertise=public
+confluent_version=5.4

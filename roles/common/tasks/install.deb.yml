@@ -1,21 +1,23 @@
-- name: add java repository
-  apt_repository: repo='ppa:webupd8team/java' update_cache=yes
+- name: Update and upgrade apt packages
+  apt:
+    upgrade: yes
+    update_cache: yes
 
-- name: Accept Java 8 License
-  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: install confluent platform
+  apt: name=software-properties-common state=latest
+
+- name: add java repository
+  apt_repository: repo='ppa:openjdk-r/ppa' update_cache=yes
 
 - name: Install Oracle Java 8
-  apt: name={{item}} state=latest
-  with_items:
-    - oracle-java8-installer
-    - ca-certificates
-    - oracle-java8-set-default
+  apt: name=openjdk-8-jdk state=latest
 
 - name: install confluent {{confluent_version}} public key
   apt_key: url=http://packages.confluent.io/deb/{{confluent_version}}/archive.key state=present
 
 - name: add confluent {{confluent_version}} apt repository
-  apt_repository: repo='deb http://packages.confluent.io/deb/{{confluent_version}} stable main' state=present update_cache=yes
+  apt_repository: repo='deb https://packages.confluent.io/deb/{{confluent_version}} stable main' state=present update_cache=yes
 
 - name: install confluent platform
-  apt: name=confluent-platform-oss-2.11 state=present
+  apt: name=confluent-platform-2.12 state=present

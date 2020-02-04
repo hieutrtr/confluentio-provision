@@ -7,6 +7,9 @@
 - name: copy service script
   copy: src=../../../services/kafka-server.service dest=/lib/systemd/system/kafka-server.service mode=0754
 
+- name: copy init script
+  copy: src=../../../services/kafka-server dest=/etc/init.d/kafka-server mode=0754
+
 - name: create log dirs
   file: path=/var/lib/kafka state=directory
 
